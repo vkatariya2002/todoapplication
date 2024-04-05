@@ -1,0 +1,8 @@
+//Jwt Authentication
+bcrypt
+Express validator
+cors
+mongoose database
+
+//
+project structuring

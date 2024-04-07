@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Header from './partials/Header';
 import { useState } from "react";
 import { register } from '../services/api';
 import { useNavigate } from "react-router-dom";
@@ -64,6 +65,7 @@ function Register() {
 
     return (
         <>
+            <Header/>
             <div className='container'>
                 <ToastContainer />
                 <div className='row justify-content-md-center mt-4'>

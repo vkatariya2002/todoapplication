@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import Header from './partials/Header';
 import { login } from '../services/api';
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
-function Login({ user, setUser }) {
+function Login() {
     const navigation = useNavigate();
     const [form, setForm] = useState({
         username: "",
@@ -12,7 +13,7 @@ function Login({ user, setUser }) {
     useEffect(() => {
         const user = localStorage.getItem('user');
         if (user) {
-            return navigation("/")
+            navigation("/")
         }
     }, []);
 
@@ -24,17 +25,18 @@ function Login({ user, setUser }) {
     };
 
     const handleSubmit = async () => {
+        console.log(form);
         const result = await login(form);
         console.log("form", result);
         setErrors(null);
 
-        if (result.status == 200) {
+        if (result.status === 200) {
             if (result.data.status === 200) {
                 localStorage.setItem("user", JSON.stringify(result.data.data));
                 navigation("/")
                 return;
             }
-            if (result.data.status == 201) {
+            if (result.data.status === 201) {
                 toast(result.data.message);
                 setErrors(result.data.data);
                 return;
@@ -48,6 +50,8 @@ function Login({ user, setUser }) {
     };
 
     return (
+    <>
+        <Header/>
         <div className='container'>
         <ToastContainer/>
             <div className='row justify-content-center mt-4'>
@@ -60,11 +64,13 @@ function Login({ user, setUser }) {
                             </label>
                             <input
                                 type="text"
+                                name="username"
                                 className="form-control"
                                 id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
                                 placeholder="Enter email or username"
                                 fdprocessedid="emweh7"
+                                onChange={handleChange}
                             />
                             {errors?.username && (
 
@@ -80,11 +86,13 @@ function Login({ user, setUser }) {
                             </label>
                             <input
                                 type="password"
+                                name="password"
                                 className="form-control"
                                 id="exampleInputPassword1"
                                 placeholder="Password"
                                 autoComplete="off"
                                 fdprocessedid="ukouyq"
+                                onChange={handleChange}
                             />
                         </div>
 
@@ -92,6 +100,7 @@ function Login({ user, setUser }) {
                             type="button"
                             className="btn btn-outline-primary"
                             fdprocessedid="b75qs4"
+                            onClick={handleSubmit}
                         >
                             Login
                         </button>
@@ -102,6 +111,7 @@ function Login({ user, setUser }) {
                 </div>
             </div>
         </div>
+    </>
     )
 }
 

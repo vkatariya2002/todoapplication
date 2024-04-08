@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
-import {ToastContainer,toast} from "react-toastify";
+import {toast} from "react-toastify";
 import { createTodoApi } from '../../services/api';
+// import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function AddTodoModal() {
+
+function AddTodoModal(setRefreshList) {
     const [todoDesc,setTodoDesc]=useState('');
 
 
@@ -10,6 +13,7 @@ const handleTodoSubmit=async()=>{
     console.log(todoDesc,'todoDesc')
     if(todoDesc===''){
         toast('todo is required')
+
         return;
     }
 
@@ -17,6 +21,8 @@ const handleTodoSubmit=async()=>{
 
     if(result.status ===200 && result.data.status === 200){
         toast('Todo Added');
+        setRefreshList.setRefreshList(new Date())
+        setTodoDesc('')
     }else{
         toast(result.data.message);
     }
@@ -24,7 +30,7 @@ const handleTodoSubmit=async()=>{
 
   return (
     <div className="modal mt-5" id='exampleModal' tabIndex="-1" role='dialog'>
-            <ToastContainer/>
+           
                 <div className="modal-dialog" role='document'>
                     <div className="modal-content">
                         <div className="modal-header">
@@ -52,7 +58,7 @@ const handleTodoSubmit=async()=>{
                         <div className="modal-footer">
 
                             <button className='btn btn-secondary' onClick={()=>{setTodoDesc('')}} data-bs-dismiss="modal">close todo</button>
-                            <button className='btn btn-secondary' onClick={handleTodoSubmit}>save todo</button>
+                            <button className='btn btn-secondary' onClick={handleTodoSubmit} data-bs-dismiss="modal">save todo</button>
 
                         </div>
                     </div>

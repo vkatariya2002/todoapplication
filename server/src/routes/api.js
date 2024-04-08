@@ -27,7 +27,7 @@ apiProtected.post("/createTodo",[check("desc","Tod desc is required").exists()],
 apiProtected.post("/deleteTodo",[check("todo_id","Tod desc is required").exists()],RemoveTodo);
 
 
-apiProtected.post("/marktodo",[check("todo_id","Todo id is required").exists()],MarkTodo);
+apiProtected.post("/markTodo",[check("todo_id","Todo id is required").exists()],MarkTodo);
 
 
 apiProtected.get("/todolist",GetTodos);

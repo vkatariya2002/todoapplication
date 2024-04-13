@@ -62,10 +62,24 @@ export const getTodoListApi = async (data)=>{
 
     
 
-export function getToken(){
+// export function getToken(){
+//     let user = localStorage.getItem('user');
+//     if(user==null) return 
+//     const userObj = JSON.parse(user);
+//     return userObj.token;
+// }
+
+export function getToken() {
+    // Retrieve the user object from local storage
     let user = localStorage.getItem('user');
-    if(!user)return 
+    
+    // If no user is logged in or local storage is empty, return undefined
+    if (user === null) return;
+
+    // Parse the user object from JSON
     const userObj = JSON.parse(user);
+    
+    // Return the authentication token
     return userObj.token;
 }
 

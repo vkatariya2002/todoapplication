@@ -16,7 +16,7 @@ mongoose.connect(DB_CONNECT)
 
 const PORT = 8000;
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use('/api/',apiRoute);
 app.use("/api/",AuthMiddleware,apiProtected);

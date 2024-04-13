@@ -75,7 +75,7 @@ export function getToken() {
     
     // If no user is logged in or local storage is empty, return undefined
     if (user === null) return;
-
+    console.log(user);
     // Parse the user object from JSON
     const userObj = JSON.parse(user);
     

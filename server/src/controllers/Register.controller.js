@@ -35,13 +35,22 @@ const Register = async(req,res)=>{
 
             const token = Jwt.sign({userId:result._id},JWT_TOKEN_SECRET)
 
-            // res.json(jsonGenerate(StatusCode.SUCCESS,"Registration successful",{UserId:result._id,token:token}));
-            res.json({UserId:result._id,token:token});
+            res.json(jsonGenerate(StatusCode.SUCCESS,"Registration successful",{UserId:result._id,token:token}));
+            // res.json({UserId:result._id,token:token});
         } catch (error) {
             console.log(error)
         }
-    }   
-     res.json(jsonGenerate(StatusCode.VALIDATION_ERROR,"validation error",errors.mapped()))
+    }  
+    
+    // if (errors.isEmpty()) {
+    //     // Registration logic
+    //     // ...
+    // }
+     else {
+        res.json(jsonGenerate(StatusCode.VALIDATION_ERROR, "Validation error", errors.mapped()));
+    }
+    
+    // res.json(jsonGenerate(StatusCode.VALIDATION_ERROR,"validation error",errors.mapped()))
     
 }
 export default Register;

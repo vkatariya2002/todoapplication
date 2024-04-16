@@ -16,10 +16,9 @@ function Todo({ todo , setRefreshList}) {
                 setRefreshList(new Date())
                 toast('Deleted')
             }else{
-                toast('Failed to delete, please try again')
+                toast('Failed to Delete, please try again')
             }
     }
-
 
     const handleMarkTodo = async()=>{
         const result = await markTodoApi({

@@ -31,7 +31,7 @@ export const MarkTodo = async (req,res)=>{
         }
         else{
             check=true;
-            console.log('test2');x1``
+            console.log('test2');
         }
         const todo = await Todo.findOneAndUpdate(
             {

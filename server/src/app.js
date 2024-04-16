@@ -16,12 +16,12 @@ mongoose.connect(DB_CONNECT)
 
 const PORT = 8000;
 
-// app.use(cors());
-app.use(cors({
-    origin: 'https://todoapplication-3r56.vercel.app/',
-    methods: ['GET', 'POST'], // Specify the allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Specify the allowed request headers
-  }));
+app.use(cors());
+// app.use(cors({
+//     origin: 'https://todoapplication-3r56.vercel.app/',
+//     methods: ['GET', 'POST'], // Specify the allowed HTTP methods
+//     allowedHeaders: ['Content-Type', 'Authorization'], // Specify the allowed request headers
+//   }));
 app.use(express.json());
 app.use('/api/',apiRoute);
 app.use("/api/",AuthMiddleware,apiProtected);

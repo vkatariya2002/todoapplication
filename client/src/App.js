@@ -4,9 +4,7 @@ import Header from './components/partials/Header.jsx';
 import Home from './components/Home.jsx'
 import Register from './components/Register.jsx';
 import Login from './components/Login.jsx';
-// import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from 'react';
 
 function App() {
  

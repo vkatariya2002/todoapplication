@@ -8,6 +8,7 @@ const AuthMiddleware = (req,res,next)=>{
         return res.json(jsonGenerate(StatusCode.AUTH_ERROR,"Access Denied"))
     }
 
+    
 const token = req.headers['auth'];
 try {
     const decoded = Jwt.verify(token,JWT_TOKEN_SECRET);
